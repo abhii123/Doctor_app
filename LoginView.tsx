@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useReducer } from 'react';
+
 import {
   Image,
   SafeAreaView,
@@ -10,8 +11,46 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from './redux/slice';
 
 const LoginView = ({navigation}) => {
+
+const initialState = {
+  fullName:'',
+  email:'',
+  password:'',
+  confirmPassword:''
+}
+
+
+const reducer = (state,action)=>{
+
+  switch (action.type){
+
+     case "SET_FULL_NAME":
+      return{
+        ...state,
+        fullName:action.payload
+      }
+
+      case "SET_EMAIL":return{
+        ...state,
+        email:action.payload
+      }
+
+      case "SET_PASSWORD":return{
+        ...state,
+        password:action.payload
+      }
+  }
+
+}
+
+const dispactch = useDispatch()
+const user = useSelector(state=> state.auth.user)
+
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <KeyboardAvoidingView
@@ -30,7 +69,7 @@ const LoginView = ({navigation}) => {
           />
 
           <Text style={styles.title}>
-            Create Account
+            {user?.name}
           </Text>
 
           <Text style={styles.subtitle}>
@@ -79,7 +118,8 @@ const LoginView = ({navigation}) => {
 
           <View style={styles.button}>
             <Text onPress={()=>{
-              navigation.navigate('enteryourdetail')
+              dispactch(login({name:'Abhishek'}))
+             // navigation.navigate('enteryourdetail')
             }} style={styles.buttonText}>
               Create Account
             </Text>
@@ -91,7 +131,7 @@ const LoginView = ({navigation}) => {
             </Text>
 
             <Text onPress={()=>{
-              navigation.navigate('register')
+              navigation.navigate('evdetails')
             }} style={styles.signInButton}>
               Sign In
             </Text>

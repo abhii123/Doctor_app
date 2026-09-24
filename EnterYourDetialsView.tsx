@@ -64,7 +64,15 @@ const EnterYourDetialsView = ({navigation}) => {
               secureTextEntry
             />
           </View>
-
+   <Text style={styles.label}>Wallet ID</Text>
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="wallet"
+              placeholderTextColor="black"
+              style={styles.input}
+              
+            />
+          </View>
           
 
           <View style={styles.button}>

@@ -11,8 +11,11 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
+import { useSelector } from 'react-redux';
 
 const ForgetPasswordView = ({navigation}) => {
+
+const user = useSelector(state=> state.auth.user)
   return (
     <SafeAreaView style={styles.safeArea}>
       <KeyboardAvoidingView
@@ -30,7 +33,7 @@ const ForgetPasswordView = ({navigation}) => {
             source={require('../MyApp/images/Logo.png')}
           />
 <Text style={styles.title}>
-            Forget Password?
+            Forget Password?{user?.name}
           </Text>
 
           <Text style={styles.subtitle}>

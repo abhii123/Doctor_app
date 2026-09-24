@@ -21,12 +21,17 @@ import RegisterView from './RegisterView';
 import EnterYourDetialsView from './EnterYourDetialsView';
 import ForgetPasswordView from './ForgetPasswordView';
 import ResetPasswordView from './ResetPasswordView';
+import { Provider } from 'react-redux';
+import store from '../MyApp/redux/store'
+import EVDetailesView from './EVDetailesView';
+import PluginAndChargeView from './PluginAndChargeView';
 
 const Stack = createNativeStackNavigator();
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
    return (
+    <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown:false}}>
         <Stack.Screen  name="splash" component={SplashView} />
@@ -36,8 +41,13 @@ function App() {
         <Stack.Screen name="forgetpassword" component={ForgetPasswordView} />
         <Stack.Screen name="enteryourdetail" component={EnterYourDetialsView} />
         <Stack.Screen name="resetpassword" component={ResetPasswordView} />
+        <Stack.Screen name="evdetails" component={EVDetailesView} />
+        <Stack.Screen name="plugincharge" component={PluginAndChargeView} />
+
+
       </Stack.Navigator>
     </NavigationContainer>
+     </Provider>
   );
 }
 
